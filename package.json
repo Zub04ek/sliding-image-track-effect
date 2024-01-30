@@ -2,7 +2,7 @@
   "name": "sliding-image-track-effect",
   "version": "0.0.0",
   "private": true,
-  "homepage": "https://github.com/Zub04ek/sliding-image-track-effect/",
+  "homepage": "https://Zub04ek.github.io/sliding-image-track-effect/",
   "type": "module",
   "scripts": {
     "dev": "vite",
