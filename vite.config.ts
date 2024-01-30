@@ -6,6 +6,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/sliding-image-track-effect/",
   plugins: [
     vue(),
     vueJsx(),
