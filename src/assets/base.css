@@ -4,7 +4,7 @@
   --vt-c-white-soft: #f8f8f8;
   --vt-c-white-mute: #f2f2f2;
 
-  --vt-c-black: #181818;
+  --vt-c-black: #000000;
   --vt-c-black-soft: #222222;
   --vt-c-black-mute: #282828;
 
@@ -60,8 +60,11 @@
 
 body {
   min-height: 100vh;
-  color: var(--color-text);
-  background: var(--color-background);
+  width: 100vw;
+  margin: 0rem;
+  overflow: hidden;
+  color: var(--vt-c-white);
+  background: var(--vt-c-black);
   transition:
     color 0.5s,
     background-color 0.5s;
