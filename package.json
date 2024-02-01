@@ -1,6 +1,7 @@
 {
   "name": "sliding-image-track-effect",
   "version": "0.0.0",
+  "packageManager": "pnpm@8.15.1",
   "private": true,
   "homepage": "https://zub04ek.github.io/sliding-image-track-effect/",
   "type": "module",
