@@ -1,9 +1,14 @@
 <template>
+  <svg style="fill: white" viewBox="0 0 22 22" width="22" height="22" class="absolute z-10">
+    <polygon points="22 11.751 0 11.751 0 10.249 22 10.249 22 11"></polygon>
+    <polygon points="11.751 0 11.751 22 10.249 22 10.249 0 11 0"></polygon>
+  </svg>
+
   <ul
     id="image-slider"
     data-mouse-down-at="0"
     data-prev-percentage="0"
-    class="flex gap-[4vmin] absolute left-1/2 top-1/2 translate-x-0 -translate-y-1/2 select-none"
+    class="flex gap-[4vmin] absolute left-[calc(50%_-_20vmin)] top-1/2 translate-x-0 -translate-y-1/2 select-none"
   >
     <li class="">
       <img
@@ -79,28 +84,27 @@ onMounted(() => {
   const track = document.getElementById('image-slider')
   const allImages = track.getElementsByTagName('img')
 
-  window.onmousedown = (e) => {
+  const setMouseDownAt = (e) => {
     track.dataset.mouseDownAt = e.clientX
   }
 
-  window.onmousemove = (e) => {
+  const moveSlider = (e, delta) => {
     if (track.dataset.mouseDownAt === '0') return
-    const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX
+    const mouseDelta = delta || parseFloat(track.dataset.mouseDownAt) - e.clientX
     const maxDelta = window.innerWidth / 2
 
     const percentage = (mouseDelta / maxDelta) * -100
     const nextPercentageWithoutLimit = parseFloat(track.dataset.prevPercentage) + percentage
     // console.log('nextPercentageWithoutLimit :>> ', nextPercentageWithoutLimit)
-    const nextPercentage = Math.max(Math.min(nextPercentageWithoutLimit, 0), -100)
+    const nextPercentage = Math.max(Math.min(nextPercentageWithoutLimit, 0), -88)
     track.dataset.percentage = nextPercentage
     track.animate(
       {
         transform: `translate(${nextPercentage}%, -50%)`
       },
       { duration: 1200, fill: 'forwards' }
-    );
-    
-    [...allImages].map((im) =>
+    )
+    ;[...allImages].map((im) =>
       im.animate(
         {
           objectPosition: `${nextPercentage + 100}% 50%`
@@ -110,9 +114,28 @@ onMounted(() => {
     )
   }
 
-  window.onmouseup = () => {
+  const setEndPoint = () => {
     track.dataset.mouseDownAt = '0'
     track.dataset.prevPercentage = track.dataset.percentage
+  }
+
+  window.onmousedown = (e) => {
+    setMouseDownAt(e)
+  }
+
+  window.onmousemove = (e) => {
+    moveSlider(e)
+  }
+
+  window.onmouseup = () => {
+    setEndPoint()
+  }
+
+  window.onwheel = (e) => {
+    const delta = -e.wheelDelta / 6
+    setMouseDownAt(e)
+    moveSlider(e, delta)
+    setEndPoint()
   }
 })
 </script>
