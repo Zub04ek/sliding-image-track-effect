@@ -1,8 +1,3 @@
-<script setup lang="ts">
-import { RouterLink } from 'vue-router'
-import HelloWorld from '../components/HelloWorld.vue'
-</script>
-
 <template>
   <div id="container" class="max-w-[1280px] p-[2rem]">
     <header>
@@ -11,29 +6,53 @@ import HelloWorld from '../components/HelloWorld.vue'
       <div class="wrapper">
         <HelloWorld msg="You did it!" />
 
-        <nav class="flex flex-wrap gap-3">
-          <RouterLink class="w-[calc((100%_-36px)/4)]" to="/">Home</RouterLink>
-          <RouterLink class="w-[calc((100%_-36px)/4)]" to="/about">About</RouterLink>
-          <RouterLink class="w-[calc((100%_-36px)/4)]" to="/slider">Slider</RouterLink>
-          <RouterLink class="w-[calc((100%_-36px)/4)]" to="/counter">Counter</RouterLink>
-          <RouterLink class="w-[calc((100%_-36px)/4)]" to="/notes">Notes</RouterLink>
+        <nav class="lg:flex lg:gap-3">
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/counter">Counter</RouterLink>
+          <RouterLink to="/notes">Notes</RouterLink>
+          <RouterLink to="/slider">Slider</RouterLink>
         </nav>
       </div>
     </header>
-    <main class="about">
-      <h1>This is an about page</h1>
+    <main class="min-h-[50vh] lg:min-h-screen flex items-center flex-col justify-center gap-5">
+      <h4 class="text-3xl">The current count is...</h4>
+      <div class="flex">
+        <button type="button" @click="count--" class="w-[5rem] p-5 rounded-full text-3xl">-</button>
+        <div class="relative">
+          <!-- <Transition> -->
+          <h1 :key="count" class="min-w-[10rem] min-h-[6rem] text-8xl text-center">
+            {{ count }}
+          </h1>
+          <!-- </Transition> -->
+        </div>
+        <button type="button" @click="count++" class="w-[5rem] p-5 rounded-full text-3xl">+</button>
+      </div>
     </main>
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+<script setup lang="js">
+import { ref } from 'vue'
+import { RouterLink } from 'vue-router'
+import HelloWorld from '../components/HelloWorld.vue'
+
+const count = ref(0)
+</script>
+
+<style scoped>
+/* .v-enter-active,
+.v-leave-active {
+  transition: all 0.8s ease;
+  position: absolute;
+  top: -3rem;
+  left: -5rem;
 }
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(3rem);
+} */
 header {
   line-height: 1.5;
   max-height: 100vh;

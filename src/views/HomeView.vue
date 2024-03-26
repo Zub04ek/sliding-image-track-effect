@@ -12,9 +12,11 @@ import HelloWorld from '../components/HelloWorld.vue'
       <div class="wrapper">
         <HelloWorld msg="You did it!" />
 
-        <nav>
+        <nav class="lg:flex lg:gap-3">
           <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
+          <!-- <RouterLink class="w-[calc((100%_-36px)/4)]" to="/about">About</RouterLink> -->
+          <RouterLink to="/counter">Counter</RouterLink>
+          <RouterLink to="/notes">Notes</RouterLink>
           <RouterLink to="/slider">Slider</RouterLink>
         </nav>
       </div>
@@ -90,6 +92,7 @@ nav a:first-of-type {
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
+    margin: 0 auto;
   }
 }
 </style>

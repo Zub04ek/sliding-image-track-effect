@@ -22,6 +22,16 @@ const router = createRouter({
       name: 'slider',
       component: () => import('../views/SliderView.vue')
     },
+    {
+      path: '/counter',
+      name: 'counter',
+      component: () => import('../views/CounterView.vue')
+    },
+    {
+      path: '/notes',
+      name: 'notes',
+      component: () => import('../views/NotesView.vue')
+    },
   ]
 })
 
